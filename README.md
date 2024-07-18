@@ -2,25 +2,16 @@
 
 This supply chain dataset provides a comprehensive view of the company's order and distribution processes, allowing for in-depth analysis and optimization of various aspects of the supply chain, from procurement and inventory management to sales.
 
-After inital exploration of data looking for trends in different metrics such as units sold, revenue, gross profit etc. decided to focus on fulfillment times and ways to imporve.
+After initial exploration of the data, looking for trends in different metrics such as units sold, revenue, gross profit, etc., I decided to focus on fulfillment times and ways to improve.
 
 
-## SUmmary of insights 
-Some insights found 
-most products have similar order quanitties between 120-200
-
-avg order fullment time is 20 days with the minimum being 3 nd the maximum being 38
-  avg for each product range between 18 and 22 days
-
-
-warehouses all have similar average fullfillment times for all products at aound 20 days
+## Summary of insights 
+- most products have similar order quantities between 120 and 200.
+- avg time for each product range between 18 and 22 days
+- total order per warehouse did not affect fulfillment time.
+- warehouses all have similar average fulfillment times for all products at around 20 days.
 
 ## Main Takeaway
-There were no major differences or trends in terms of fullfilment time or revenue across single dimesions such as warehouse, time of year, customer etc.
+There were no major differences or trends in terms of fulfillment time or revenue across single dimensions such as warehouse, time of year, customer, etc.
 
-However when splitting fulfillment time across two dimensions, warehouse and product, it is clear that some warehouses manage to fulfill orders much faster than other warehouses. This seems like an area to focus on to improve the supply chain operations. There may be several reasons why certian warehouses are able to consistnatly fulfill orders faster than other warhouses and this area can be investigated furthur to improve operatioins and cusomer satisfaction. For the purpose of this porject I manaeged to identifyt he top five products witht heighest average fullfilment time an matched them with the warehouses with the lowest fullfillment time for ech product. This provides a steppign stone for furthur investigation int owhy a warehouse may be providing more satisfacory fullment times for each product and which specific warehouses to focus on.
-
-identified top five products in each warehouse with highest fullment times
-then identidied which warhouses are able to fullfil those orders at the smallest average time
-   possinly investigate how they ar able to fullfil these orders in a smaller time and replicate in other warehouses
-![Screenshot 2024-07-18 at 00 11 46](https://github.com/user-attachments/assets/508644fc-4f93-4337-b1b5-4d9b0722043a)
+However, when splitting fulfillment time across two dimensions, warehouse and product, it is clear that some warehouses manage to fulfill orders much faster than other warehouses. This seems like an area to focus on to improve supply chain operations. There may be several reasons why certain warehouses are able to consistently fulfill orders faster than others, and this area can be investigated further to improve operations and customer satisfaction. For the purpose of this project, I managed to identify the top five products with the highest average fulfillment time and match them with the warehouses with the lowest fulfillment time for each product. This provides a stepping stone for further investigation into why a warehouse may be providing more satisfactory fulfillment times for each product and which specific warehouses to focus on.
