@@ -23,3 +23,4 @@ However when splitting fulfillment time across two dimensions, warehouse and pro
 identified top five products in each warehouse with highest fullment times
 then identidied which warhouses are able to fullfil those orders at the smallest average time
    possinly investigate how they ar able to fullfil these orders in a smaller time and replicate in other warehouses
+![Screenshot 2024-07-18 at 00 11 46](https://github.com/user-attachments/assets/508644fc-4f93-4337-b1b5-4d9b0722043a)
