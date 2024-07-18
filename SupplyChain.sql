@@ -53,6 +53,7 @@ SELECT
     MIN(DATEDIFF(delivery_date, order_date)) AS min_fulfillment_time,
     MAX(DATEDIFF(delivery_date, order_date)) AS max_fulfillment_time
 FROM orders;
+-- avg around 20 with a range of 3-38
 
 -- Order fullfilment by warehouse
 SELECT 
@@ -62,14 +63,19 @@ SELECT
 FROM orders
 GROUP BY warehouse_code
 ORDER BY avg_fulfillment_time;
+-- large disparity in number of orders for some warehouses however it does not affect avg. fulfillment time
 
--- Total orders by warehouse
+-- Avg order fullment time by product
 SELECT 
-    warehouse_code,
+    product_id,
+    AVG(DATEDIFF(delivery_date, order_date)) AS avg_fulfillment_time,
+    MIN(DATEDIFF(delivery_date, order_date)) AS min_fulfillment_time,
+    MAX(DATEDIFF(delivery_date, order_date)) AS max_fulfillment_time,
     COUNT(order_number) AS total_orders
 FROM orders
-GROUP BY warehouse_code
-ORDER BY total_orders DESC;
+GROUP BY product_id
+ORDER BY avg_fulfillment_time ASC;
+-- some disparity with avg fulfillment ime for each product ranging between 18-22 days
 
 
 -- Identifying top five products with highest fullment times in each warehouse
@@ -113,18 +119,10 @@ WHERE s.avg_fulfillment_time = (
     WHERE product_id = t.product_id
 )
 ORDER BY t.original_warehouse, t.product_id;
+-- some warehouses fulfill porducts much faster than other
+-- so matched the top five worst products in terms of fulfillment times froom each warehouse
+	-- with the warehouse that fulfills that product the fastest
 
-
--- Avg order fullment time by product
-SELECT 
-    product_id,
-    AVG(DATEDIFF(delivery_date, order_date)) AS avg_fulfillment_time,
-    MIN(DATEDIFF(delivery_date, order_date)) AS min_fulfillment_time,
-    MAX(DATEDIFF(delivery_date, order_date)) AS max_fulfillment_time,
-    COUNT(order_number) AS total_orders
-FROM orders
-GROUP BY product_id
-ORDER BY avg_fulfillment_time ASC;
 
 -- overall warehouse perofrmance
 SELECT 
@@ -137,17 +135,9 @@ SELECT
 FROM orders
 GROUP BY warehouse_code
 ORDER BY total_profit ASC;
-
--- avg fulfillment times by month
-SELECT 
-    DATE_FORMAT(order_date, '%m') AS month,
-    AVG(DATEDIFF(delivery_date, order_date)) AS avg_fulfillment_time,
-    COUNT(order_number) AS total_orders
-FROM orders
-GROUP BY month
-ORDER BY month;
--- time of year does not appear to have an effect as the avg. is 20 for all months
-
+-- nothing unexpected
+	-- the warehouses with more orders also have highesr costs and total sales
+    -- avg fulfillment time stays the same
 
 -- order size imapct on fullfilment time
 SELECT 
@@ -169,6 +159,16 @@ FROM (
 GROUP BY order_size
 ORDER BY avg_fulfillment_time DESC;
 -- order size does not appear to have an effect on fulfillment time
+
+-- avg fulfillment times by month
+SELECT 
+    DATE_FORMAT(order_date, '%m') AS month,
+    AVG(DATEDIFF(delivery_date, order_date)) AS avg_fulfillment_time,
+    COUNT(order_number) AS total_orders
+FROM orders
+GROUP BY month
+ORDER BY month;
+-- time of year does not appear to have an effect as the avg. is 20 for all months
 
 
 
@@ -203,6 +203,7 @@ GROUP BY product_id
 ORDER BY total_sales DESC
 LIMIT 10;
 
+-- sales and order quantity for each product by month
 SELECT 
     product_id,
     DATE_FORMAT(order_date, '%Y-%m') AS month,
@@ -212,6 +213,7 @@ FROM orders
 GROUP BY product_id, month
 ORDER BY product_id, month;
 
+-- sales and order quanitity for each product by warehouse
 SELECT 
     product_id,
     warehouse_code,
